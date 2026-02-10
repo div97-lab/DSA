@@ -2,6 +2,7 @@
 
 //implentation of list using array
 #include<stdio.h>
+#include<stdlib.h>
 
 #define MAX 100
 int list[MAX];
@@ -80,9 +81,27 @@ void insertAtCustom(int pos,int value){
     void updateList(int pos,int value){
       if(pos<0 || pos>=n){
         printf("invalid position!!!");
+        return;
 
       }
-    }
+      list[pos]=value;
+    printf("list updated!!1");
+      }
+      void bubbleSort(){
+        for(int i=0; i<n-1;i++){
+          for(int j=0;j<n-1;j++){
+            if(list[j]>list[j+1]){
+              int temp = list[j];
+              list[j]=list[j+1];
+              list[j+1]=temp;
+
+            }
+            
+
+          }
+        }
+      }
+    
 void displaylist(){
     if(n==0){
         printf("list is empty!!!\n");
@@ -167,14 +186,15 @@ int main(){
             break;
 
             case 10:
+            bubbleSort();
             break;
             case 11:
+            exit(0);
             break;
             default:
-            printf("invalud choice!!!\n");
+            printf("invalid choice!!!\n");
         }
         printf("\n\n");
     }
     return 0;
 }
-
