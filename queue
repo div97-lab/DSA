@@ -1,0 +1,64 @@
+#include<stdio.h>
+#define MAX 100
+int queue[MAX], front= -1, rear=-1;
+
+int isEmpty(){
+    return front== -1;
+}
+int isFull(){
+    return rear == MAX-1;
+
+}
+void enqueue(int data){
+if(isFull()){
+    printf("\nqueue overflow!!!\n");
+    return;
+}
+queue[++rear]= data;
+if(front ==-1)
+front= rear;
+printf("\n%d insrted in queue\n", data);
+
+}
+void dequeue(){
+
+}
+int peek(){
+
+}
+int display(){
+
+}
+ int main(){
+    int choice,value;
+    while(1){
+        printf("1. enqueue\n");
+        printf("2. dequeue\n");
+        printf("3.peek\n");
+         printf("4.display\n");
+        printf("exit\n");
+         printf("enter choice: ");
+        scanf("%d",&choice);
+            switch(choice){
+                            case 1: 
+                            break;
+
+                            case 2:
+                            break;
+
+                            case 3:
+                            break;
+
+                            case 4:
+                            break;
+
+                            case 5:
+                            break;
+
+                            default:
+                            return
+                        }
+   
+    }
+ }
+
