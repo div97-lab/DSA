@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<ctype.h>
+
+#define MAX 100000
+
+int queue[MAX], front = -1, rear = -1;
+int capacity;
+
+int isEmpty(){
+    return front == -1;
+}
+
+int isFull(){
+    return rear == capacity-1;
+}
+
+void enqueue(int data){
+    if(isFull()){
+        printf("Queue Overflow\n");
+        return;
+    }
+
+    queue[++rear] = data;
+
+    if(front == -1)
+        front = rear;
+}
+
+int dequeue(){
+    if(isEmpty()){
+        printf("Queue Underflow\n");
+        return -1;
+    }
+
+    int val = queue[front++];
+
+    if(front > rear)
+        front = rear = -1;
+
+    return val;
+}
+
+int peek(){
+    if(isEmpty()){
+        printf("Queue Underflow\n");
+        return -1;
+    }
+
+    return queue[front];
+}
+
+void display(){
+    if(isEmpty()){
+        printf("Queue is Empty\n");
+        return;
+    }
+
+    for(int i = front; i <= rear; i++){
+        printf("%d ", queue[i]);
+    }
+
+    printf("\n");
+}
+
+int main(){
+
+    int N,Q;
+    scanf("%d",&N);
+    scanf("%d",&Q);
+
+    capacity = N;
+
+    int choice,value;
+
+    while(Q--){
+
+        scanf("%d",&choice);
+
+        switch(choice){
+
+            case 1:
+                scanf("%d",&value);
+                enqueue(value);
+                break;
+
+            case 2:
+                value = dequeue();
+                if(value != -1)
+                    printf("%d\n",value);
+                break;
+
+            case 3:
+                value = peek();
+                if(value != -1)
+                    printf("%d\n",value);
+                break;
+
+            case 4:
+                display();
+                break;
+        }
+    }
+
+    return 0;
+}
