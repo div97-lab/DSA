@@ -1,0 +1,104 @@
+// circular queue operations
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <ctype.h>
+#define MAX 100
+int queue[MAX],front = -1, rear =-1;
+
+int isEmpty(){
+  return front == -1;
+}
+int isFull(){
+    return (rear+1)%MAX == front;
+}
+void enqueue(int data){
+    if(isFull()){
+        printf("queue overflow!!!\n");
+        return ;
+    }
+    if(isEmpty())
+    front = rear =0;
+    else if(rear == MAX-1 && front!=0)
+    rear=0;
+    else
+    rear= (rear+1)%MAX;
+    queue[rear]=data;
+    printf("Element Inserted!!!\n");
+}
+
+int dequeue(){
+    if(isEmpty()){
+    printf("queue underflow!!!\n");
+    return -1;
+    }
+    int val=queue[front];
+    if(front ==rear)
+    front= rear = -1;
+    else if(front == MAX-1)
+    front=0;
+    else
+    front++;
+    return val;
+}
+
+int peek(){
+     if(isEmpty()){
+    printf("queue underflow!!!\n");
+    return -1;
+    }
+    return queue[front];
+}
+void display(){
+ if(isEmpty()){
+    printf("queuen is empty!!!\n");
+    return;
+    }
+    int i = front;
+    while(1){
+        printf("%d",queue[i]);
+        if(i== rear);
+        break;
+        i= (i+1)%MAX;
+
+    }
+}
+int main(){
+    int choice,value;
+    while(1){
+        printf("1.Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Peek\n");
+        printf("4. Display\n");
+        printf("5. Exit\n");
+        printf("Enter choice\n");
+        scanf("%d",&choice);
+        switch (choice) {
+            case 1:
+                printf("Enter value to insert: ");
+                scanf("%d", &value);
+                enqueue(value);
+                break;
+            case 2:
+                value = dequeue();
+                if (value != -1)
+                    printf("Dequeued: %d\n", value);
+                break;
+            case 3:
+                value = peek();
+                if (value != -1)
+                    printf("Front element: %d\n", value);
+                break;
+            case 4:
+                display();
+                break;
+            case 5:
+                printf("Exiting...\n");
+                exit(0);
+            default:
+                printf("Invalid choice! Try again.\n");
+        }
+    }
+    return 0;
+}
