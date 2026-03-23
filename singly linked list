@@ -1,0 +1,112 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node{
+    int data;
+    struct Node* next;
+}
+struct Node* head = NULL;
+struct Node* createNode(int data){
+    struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
+    temp->data= data;
+    temp->next= NULL;
+    return temp;
+}
+void insertNodeAtBeg(int data){
+    struct Node*  newNode =  createNode(data);
+    newNode->next =head;
+    head= newNode;
+    printf("Node inserted!!!\n");
+
+}
+void insertNodeAtEnd(int data){
+    struct Node* newNode= createNode(data);
+    if (head == NULL)
+    head =  newNode;
+    else{
+        struct Node* temp= head;
+        while (temp->next != NULL){
+            temp= temp= temp-> next
+        }
+        temp=> next= newNode;
+        printf("Node inderted at end")
+    }
+
+}
+void displayList(){
+if(head== NULL)
+printf("List is Empty!!!\n");
+else{
+    struct Node* temp= head;
+    while(temp!= NULL){
+        printf("%d ", temp-> data);
+        temp= temp-> next;
+    }
+}
+}
+
+
+
+int main(){
+    int choice,data, pos;
+    while(1){
+        printf("\n ***** singly linked list menu*****\n");
+        printf("1. Insert In Beginning\n");
+        printf("2. Insert At End\n");
+        printf("3. Insert At Any Position\n");
+        printf("4. Delete From Beginning\n");
+        printf("5. Delete From End\n");
+        printf("6. Delete From Any Position\n");
+        printf("7. Display List\n");
+        printf("8. Search Element In List\n");
+        printf("9. Exit\n");
+        int choice, data;
+        printf("Enter Choice: ");
+        scanf("%d", &choice);
+        switch(choice){
+            case 1:
+                printf("Enter Data: ");
+                scanf("%d", &data);
+                insertAtBeg(data);
+                break;
+            case 2:
+                printf("Enter Data: ");
+                scanf("%d", &data);
+                insertAtEnd(data);
+                break;
+            case 3:
+                printf("Enter Data: ");
+                scanf("%d", &data);
+                printf("Enter Pos: ");
+                scanf("%d", &pos);
+                insertAtCustom(pos, data);
+                break;
+            case 4:
+                deleteFromBeg();
+                break;
+            case 5:
+                deleteFromEnd();
+                break;
+            case 6:
+                printf("Enter Position: ");
+                scanf("%d", &pos);
+                deleteFromPosition(pos);
+                break;
+            case 7:
+                displayList();
+                break;
+            case 8:
+                printf("Enter Search Element: ");
+                scanf("%d", &data);
+                int index = search(data);
+                break;
+            
+            case 9:
+                exit(0);
+                break;
+            default:
+                printf("Invalid choice!!!\n");
+        }
+        printf("\n\n");
+    }
+    return 0;
+}
